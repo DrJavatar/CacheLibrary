@@ -5,6 +5,7 @@ import com.javatar.ext.toFilesystemHash
 import java.nio.ByteBuffer
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class SqliteFilesystem(path: Path) : Filesystem(path) {
     var indices: Array<SqliteIndexFile?>
@@ -63,4 +64,7 @@ class SqliteFilesystem(path: Path) : Filesystem(path) {
 
     override fun numIndices(): Int = indices.size
 
+    companion object {
+        fun create(directory: String) : Filesystem = SqliteFilesystem(Paths.get(directory))
+    }
 }
